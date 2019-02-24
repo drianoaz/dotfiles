@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+read -r -p "Do you want to install softwares? [y/N] " response
+
+if [[ "$response" =~ ^([nN])+$ ]]; then
+  return 0;
+fi
+
 sudo apt-get update
 
 echo "Setting up Snap"
