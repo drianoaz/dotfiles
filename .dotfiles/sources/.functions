@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Functions :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+# NPX
+# Starts a server
+server() {
+  npx http-server
+}
+
+# Kill process using a given port
+kill-port() {
+  npx kill-port $1
+}

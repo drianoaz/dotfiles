@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Docker ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+alias docker-pompose='docker run docker/whalesay cowsay cade meus amiguinhos online pra me dar um pouco de crack'
+# alias docker_kill='docker kill $(docker ps -q)'
+alias docker_remove_images='docker rmi $(docker images -a -q)'
+alias docker_remove_containers='docker rm $(docker ps --filter=status=exited --filter=status=created -q)'
+alias docker_stop='docker stop $(docker ps -aq)'
+alias docker_reset='docker_stop && docker_remove_containers && docker_remove_images'

@@ -1,0 +1,36 @@
+{
+  "extends": "stylelint-config-standard",
+
+  "rules": {
+    "at-rule-no-unknown": [ true, {
+      "ignoreAtRules": [
+        "extend", "at-root", "debug", "warn", "error", "if", "else", "for", "each", "while",
+        "mixin", "include", "content", "return", "function"
+      ]
+    }],
+    "block-closing-brace-newline-after": [ "always", {
+      "ignoreAtRules": ["if", "else"]
+    }],
+    "at-rule-empty-line-before": [ "always", {
+      "except": [
+        "blockless-after-same-name-blockless",
+        "first-nested"
+      ],
+      "ignore": [
+        "after-comment",
+        "inside-block"
+      ]
+    }],
+    "color-hex-case": "upper",
+    "declaration-empty-line-before": "never",
+    "max-empty-lines": 2,
+    "number-leading-zero": null,
+    "selector-pseudo-element-colon-notation": "single",
+    "string-quotes": "single",
+    "at-rule-no-vendor-prefix": true,
+    "media-feature-name-no-vendor-prefix": true,
+    "property-no-vendor-prefix": true,
+    "selector-no-vendor-prefix": true,
+    "value-no-vendor-prefix": true
+  }
+}

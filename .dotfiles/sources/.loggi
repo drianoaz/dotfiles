@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Loggi's source aliases ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+alias backend="cd /opt/loggi/ops && git pull && cd /opt/loggi/web && git pull && loggi pip-install -U && loggi pm migrate && loggi run"
+alias backend_clean_install="loggi down && docker rm -f data && loggi up && loggi pip-install -U && loggi setup-dev-db && loggi pm cep_import"
+alias update_images="docker pull loggi/dev"
+alias loggi_restart='docker_reset && update_images && backend_clean_install'

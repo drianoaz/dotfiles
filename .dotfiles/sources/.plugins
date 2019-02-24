@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Plugins :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+# Linuxbrew
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# Thefuck
+eval $(thefuck --alias fuck)
