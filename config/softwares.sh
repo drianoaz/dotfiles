@@ -19,7 +19,7 @@ fi
 #  Snap apps ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 echo "Installing apps with snap"
 declare -a apps=(
-	"chromium"
+  "chromium"
   "firefox"
   "docker"
   "vscode --classic"
@@ -27,16 +27,16 @@ declare -a apps=(
   "slack --classic"
   "simplescreenrecorder-mardy"
   "vlc"
-	"gitkraken"
+  "gitkraken"
 )
 
 for app in "${apps[@]}"; do
   app_name=${app%" --classic"}
-  if test ! [$(which $app_name)] && ! [$(ls /snap | grep ${app_name})]; then
-		echo "Installing $app_name"
-		sudo snap install $app
+  if test ! $(which $app_name) && ! $(ls /snap | grep ${app_name}); then
+    echo "Installing $app_name"
+    sudo snap install $app
   else
-		echo "Updating $app_name"
-		sudo snap refresh $app
+    echo "Updating $app_name"
+    sudo snap refresh $app
   fi
 done
