@@ -13,7 +13,6 @@ if test ! $(which brew); then
   test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
   echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
   source ~/.bash_profile
-  brew install gcc
 fi
 
 # Brew tap ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -30,9 +29,10 @@ done
 # Brew apps :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 echo "Installing apps with brew"
 declare -a brew=(
+  "gcc"
+  "git"
   "nvm"
   "thefuck"
-  "git"
   "tmux"
   "zsh"
   "zsh-completion"
