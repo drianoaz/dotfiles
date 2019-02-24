@@ -4,7 +4,7 @@
 declare -a apps=(
   "softwares.sh"
   "brew.sh"
-	"zsh.sh"
+  "zsh.sh"
 )
 
 for app in "${apps[@]}"; do
