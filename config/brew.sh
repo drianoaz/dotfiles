@@ -6,9 +6,14 @@
 echo "Setting up Linuxbrew"
 if test ! $(which brew); then
   echo "Installing Linuxbrew"
+  sudo apt-get install curl build-essential
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-  echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+  test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+  test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+  test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+  echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
   source ~/.bash_profile
+  brew install gcc
 fi
 
 # Brew tap ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
