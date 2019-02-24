@@ -9,10 +9,6 @@ if test ! $(which brew); then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
   echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
   source ~/.bash_profile
-else
-  echo "Linuxbrew already instaled"
-  echo "Updating Linuxbrew"
-  brew update
 fi
 
 # Brew tap ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
