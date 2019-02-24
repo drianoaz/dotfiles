@@ -18,17 +18,18 @@ declare -a apps=(
   "docker"
   "vscode --classic"
   "spotify"
-  "slack"
+  "slack --classic"
   "simplescreenrecorder-mardy"
   "vlc"
 )
 
 for app in "${apps[@]}"; do
-  if test ! $(ls /snap | grep $app); then
-		echo "Installing $app"
+  app_name=${app%" --classic"}
+  if test ! [$(which $app_name)] && ! [$(ls /snap | grep ${app_name})]; then
+		echo "Installing $app_name"
 		sudo snap install $app
   else
-		echo "Updating $app"
+		echo "Updating $app_name"
 		sudo snap refresh $app
   fi
 done
