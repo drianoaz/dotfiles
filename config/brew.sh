@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
 
-# Setup Brew (http://linuxbrew.sh/) :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 # Brew ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-echo "Setting up Linuxbrew"
+echo "Setting up Brew"
 if test ! $(which brew); then
-  echo "Installing Linuxbrew"
-  sudo apt-get install curl build-essential
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-  test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
-  test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-  test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
-  echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
-  source ~/.bash_profile
+  echo "Installing Brew"
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Brew tap ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -35,7 +27,9 @@ declare -a brew=(
   "thefuck"
   "tmux"
   "zsh"
-  "zsh-completion"
+  "peco"
+  "fzf"
+  "fzy"
 )
 
 for app in "${brew[@]}"; do
