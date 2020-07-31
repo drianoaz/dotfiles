@@ -12,3 +12,44 @@ server() {
 kill-port() {
   npx kill-port $1
 }
+
+# Peco history selection
+function peco-history-selection() {
+  local tac
+  if which tac > /dev/null; then
+    tac="tac"
+  else
+    tac="tail -r"
+  fi
+  BUFFER=$(history -5000 | eval $tac | cut -c 8- | peco --query "$LBUFFER")
+  CURSOR=$#BUFFER
+}
+
+function cleaning-terminal() {
+  clear && printf '\e[3J'
+}
+
+# Hack to await docker initialize
+function docker-init() {
+  if (! docker stats --no-stream ); then
+    # On Mac OS this would be the terminal command to launch Docker
+    open --hide --background -a /Applications/Docker.app
+
+    #Wait until Docker daemon is running and has completed initialisation
+    while (! docker stats --no-stream); do
+      # remove ugly error
+      cleaning-terminal
+
+      # Docker takes a few seconds to initialize
+      echo "Waiting for Docker to launch..."
+      sleep 1
+    done
+  fi
+
+  cleaning-terminal
+  echo "Docker has been initialized :)"
+}
+
+function split-iterm-tab() {
+  osascript -e 'tell application "System Events" to key code 2 using command down'
+}
