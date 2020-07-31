@@ -1,0 +1,34 @@
+#!/bin/sh
+
+export XERPA_HOME=$HOME/xerpa
+export XERPA_DOCA_HOME=$XERPA_HOME/doca
+export XERPA_LUKLA_HOME=$XERPA_HOME/lukla
+export XERPA_KITASATO_HOME=$XERPA_HOME/kitasato
+export XERPA_RENMINBI_HOME=$XERPA_HOME/renminbi
+
+alias xerpactl="$XERPA_DOCA_HOME/xerpactl"
+alias xerpaopen="$XERPA_DOCA_HOME/xerpaopen"
+
+# up containers
+alias up-lukpa="echo \"\nUp Lukla containers... \n\" && $XERPA_DOCA_HOME/xerpactl up -d lukla"
+alias up-renminbi="echo \"\nUp Renminbi containers... \n\" && $XERPA_DOCA_HOME/xerpactl up -d renminbi"
+alias up-minio="echo \"\nUp Minio... \n\" && $XERPA_RENMINBI_HOME/ext/bin/env setup-minio"
+
+# bootstrap
+alias bootstrap-lukla="echo \"\nBootstrap Lukla... \n\" && $XERPA_LUKLA_HOME/ext/bin/env bootstrap"
+alias bootstrap-renmibi="echo \"\nBootstrap Renmibi... \n\" && $XERPA_RENMINBI_HOME/ext/bin/env bootstrap"
+
+# run dev server
+alias lukla="echo \"The Lukla is initializing... \n\" && docker-init && up-lukpa && echo \"\nRun Lukla development server...\n\" && $XERPA_LUKLA_HOME/ext/bin/env iex -S mix"
+alias renminbi="echo \"The Renminbi is initializing... \n\" && docker-init && up-renminbi && up-minio && echo \"\nRun Renminbi development server...\n\" && $XERPA_RENMINBI_HOME/ext/bin/env iex -S mix"
+alias app-backend="lukla & split-iterm-tab && renminbi"
+
+# open dir alias
+alias lu="cd $XERPA_LUKLA_HOME"
+alias ren="cd $XERPA_RENMINBI_HOME"
+alias ki="cd $XERPA_KITASATO_HOME"
+
+# Extra
+#
+alias xerpa_chernobyl="echo Reset xerpa setup... && docker-init && docker_reset && up-lukpa && bootstrap-lukla && up-renminbi && bootstrap-renmibi"
+
