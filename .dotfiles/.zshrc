@@ -1,15 +1,22 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH=~/.oh-my-zsh
-export NVM_DIR="$HOME/.nvm"
+
+# nvm
+# export NVM_DIR="$HOME/.nvm"
+
+# flutter
+# export PATH="$PATH:$HOME/flutter/bin"
 
 # Android Studio
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/platform-tools q
+# export ANDROID_HOME=$HOME/Library/Android/sdk
+# export PATH=~/Library/Android/sdk/tools:$PATH
+# export PATH=~/Library/Android/sdk/platform-tools:$PATH
+# export PATH=$PATH:$ANDROID_HOME/tools
+# export PATH=$PATH:$ANDROID_HOME/platform-tools q
+
 
 # Dot files
 export DOTFILES_HOME=$HOME/dotfiles/.dotfiles
@@ -72,15 +79,25 @@ ZSH_THEME="af-magic"
 # Check the list at https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
 plugins=(
   git
+  npm
+  docker
+  docker-compose
+  osx
+  flutter
 )
 
 source $ZSH/oh-my-zsh.sh
+autoload -Uz compinit && compinit
 
 # ZSH ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 alias zshrc="source $HOME/.zshrc"
 
 # PLUGINS
-source $DOTFILES_HOME/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fpath=($DOTFILES_HOME/plugins/zsh-completions/src $fpath)
+source $DOTFILES_HOME/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+source $DOTFILES_HOME/plugins/enhancd/init.sh
+export ENHANCD_FILTER=fzy:fzf:peco
 
 # Sources :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 declare -a sources=($(find "$DOTFILES_SOURCES" -type f))
@@ -92,6 +109,10 @@ for source in $sources; do
     source $source
   fi
 done
+
+# add peco histoy search
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
