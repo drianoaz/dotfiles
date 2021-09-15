@@ -3,7 +3,7 @@
 # Start all scripts at ./config folder
 declare -a apps=(
   "softwares.sh"
-  "brew.sh"
+  "git.sh"
   "zsh.sh"
 )
 

@@ -4,20 +4,6 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-# nvm
-# export NVM_DIR="$HOME/.nvm"
-
-# flutter
-# export PATH="$PATH:$HOME/flutter/bin"
-
-# Android Studio
-# export ANDROID_HOME=$HOME/Library/Android/sdk
-# export PATH=~/Library/Android/sdk/tools:$PATH
-# export PATH=~/Library/Android/sdk/platform-tools:$PATH
-# export PATH=$PATH:$ANDROID_HOME/tools
-# export PATH=$PATH:$ANDROID_HOME/platform-tools q
-
-
 # Dot files
 export DOTFILES_HOME=$HOME/dotfiles/.dotfiles
 export DOTFILES_SOURCES=$DOTFILES_HOME/sources
@@ -82,8 +68,8 @@ plugins=(
   npm
   docker
   docker-compose
-  osx
-  flutter
+  # zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -92,20 +78,11 @@ autoload -Uz compinit && compinit
 # ZSH ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 alias zshrc="source $HOME/.zshrc"
 
-# PLUGINS
-fpath=($DOTFILES_HOME/plugins/zsh-completions/src $fpath)
-source $DOTFILES_HOME/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-source $DOTFILES_HOME/plugins/enhancd/init.sh
-export ENHANCD_FILTER=fzy:fzf:peco
-
 # Sources :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 declare -a sources=($(find "$DOTFILES_SOURCES" -type f))
-# echo "Checking source files"
 
 for source in $sources; do
   if [ -r $source ] && [ -f $source ]; then
-    # echo "Sourcing $source"
     source $source
   fi
 done
@@ -114,6 +91,7 @@ done
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
+# add nvm environments
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
