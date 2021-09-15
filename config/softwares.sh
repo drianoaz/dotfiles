@@ -19,6 +19,7 @@ declare -a packages=(
   "zsh"
   "tmux"
   "peco"
+  "vim"
 )
 
 for package in "${packages[@]}"; do
