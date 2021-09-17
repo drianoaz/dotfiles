@@ -96,3 +96,8 @@ bindkey '^R' peco-history-selection
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# To use the yarn's installed global packages, the install location has to be added to the PATH environment variable of your shell.
+# @see <https://classic.yarnpkg.com/en/docs/cli/global/>
+export PATH="$(yarn global bin):$PATH"
